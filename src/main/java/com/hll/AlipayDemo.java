@@ -9,10 +9,12 @@ import com.hll.alipay.model.builder.AlipayTradePrecreateRequestBuilder;
 import com.hll.alipay.model.result.AlipayF2FPrecreateResult;
 import com.hll.alipay.service.AlipayTradeService;
 import com.hll.alipay.service.impl.AlipayTradeServiceImpl;
+import com.hll.alipay.utils.ZxingUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -118,10 +120,11 @@ public class AlipayDemo {
                 dumpResponse(response);
 
                 // 需要修改为运行机器上的路径
-                String filePath = String.format("/Users/sudo/Desktop/qr-%s.png",
+                String filePath = String.format("E:\\/qr-%s.png",
                         response.getOutTradeNo());
                 log.info("filePath:" + filePath);
-                //                ZxingUtils.getQRCodeImge(response.getQrCode(), 256, filePath);
+                File qrCodeImge = ZxingUtils.getQRCodeImge(response.getQrCode(), 256, filePath);
+
                 break;
 
             case FAILED:
